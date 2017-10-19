@@ -16,11 +16,12 @@ class Statuslabel extends SnipeModel
     protected $injectUniqueIdentifier = true;
     protected $dates = ['deleted_at'];
     protected $table = 'status_labels';
+    protected $hidden = ['user_id','deleted_at'];
 
 
     protected $rules = array(
         'name'  => 'required|string|unique_undeleted',
-        'notes'   => 'string',
+        'notes'   => 'string|nullable',
         'deployable' => 'required',
         'pending' => 'required',
         'archived' => 'required',
@@ -62,6 +63,7 @@ class Statuslabel extends SnipeModel
             return 'deployable';
         }
     }
+
 
     public static function getStatuslabelTypesForDB($type)
     {
